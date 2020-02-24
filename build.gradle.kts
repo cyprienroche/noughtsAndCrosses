@@ -4,11 +4,21 @@ plugins {
     java
     kotlin("jvm") version "1.3.61"
     id("org.jmailen.kotlinter") version "2.3.0"
+    application
+    distribution
 }
 
 group = "Cyprien Roche"
 version = "0.1.0"
 description = """Myla Compiler"""
+application.mainClassName = "MainKt"
+
+java.sourceCompatibility = JavaVersion.VERSION_11
+java.targetCompatibility = JavaVersion.VERSION_11
+
+tasks.jar {
+    manifest.attributes(mapOf("Implementation-Title" to project.name, "Implementation-Version" to project.version))
+}
 
 repositories {
     mavenCentral()
@@ -16,14 +26,20 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    testImplementation("junit:junit:4.12")
+    implementation(kotlin("stdlib-jdk8"))
+    testImplementation("org.junit.jupiter:junit-jupiter:5.6.0")
     testImplementation("org.hamcrest:hamcrest-all:1.3")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
 }
 
-val test: Test by tasks
-test.testLogging.setEvents(setOf("PASSED", "FAILED", "SKIPPED"))
+tasks.test {
+    useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
+}
 
-val compileKotlin: KotlinCompile by tasks
-compileKotlin.kotlinOptions.jvmTarget = "11"
+// config JVM target to 11 for kotlin compilation tasks
+tasks.withType<KotlinCompile>().configureEach {
+    kotlinOptions.jvmTarget = "11"
+}
