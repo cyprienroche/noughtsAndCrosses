@@ -46,4 +46,11 @@ class BoardTest {
         assertThat(columns(squareBoard(3)), `is`(listOf(listOf(0,3,6), listOf(1,4,7), listOf(2,5,8))))
 
     }
+
+    @Test
+    internal fun columnsFromMalformedBoardThrowsException() {
+        assertThrows<IllegalArgumentException> { columns(squareBoard(0)) }
+
+        assertThrows<IllegalArgumentException> { columns(squareBoard(-1)) }
+    }
 }
