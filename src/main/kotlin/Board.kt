@@ -1,4 +1,3 @@
-import java.lang.IllegalArgumentException
 
 data class Board(val cells: List<Int>, val dim: Int)
 
