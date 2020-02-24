@@ -6,8 +6,9 @@ fun columns(board: Board): List<List<Int>> = rows(board).transpose()
 
 fun <E> List<List<E>>.transpose(): List<List<E>> = when {
     this.first().isEmpty() -> emptyList()
-    else -> this.map { it.head() } append this.map { it.tail() }.transpose()
+    else -> this.filter { it.isNotEmpty() }.map { it.head() } append this.map { it.tail() }.transpose()
 }
+
 
 fun <E> List<E>.head(): E = first()
 
