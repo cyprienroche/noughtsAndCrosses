@@ -55,6 +55,9 @@ class BoardTest {
 
             assertThat(listOf(listOf(1,2,3), listOf(4,5)).transpose(),
                 `is`(listOf(listOf(1,4), listOf(2,5), listOf(3))))
+
+            assertThat(listOf(listOf(1,2), listOf(), listOf(4)).transpose(),
+                `is`(listOf(listOf(1,4), listOf(2))))
         }
     }
 }

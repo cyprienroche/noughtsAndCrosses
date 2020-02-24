@@ -9,7 +9,6 @@ fun <E> List<List<E>>.transpose(): List<List<E>> = when {
     else -> this.filter { it.isNotEmpty() }.map { it.head() } append this.map { it.tail() }.transpose()
 }
 
-
 fun <E> List<E>.head(): E = first()
 
 fun <E> List<E>.tail(): List<E> = drop(1)
