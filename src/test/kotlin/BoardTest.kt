@@ -20,7 +20,7 @@ class BoardTest {
     // @ParameterizedTest
     // @MethodSource("boards")
     @Test
-    internal fun canGetRowsFromWellFormedBoard() {
+    internal fun canGetRowsFromSquaredBoard() {
 
         assertThat(rows(squareBoard(1)), `is`(listOf(listOf(0))))
 
@@ -37,7 +37,7 @@ class BoardTest {
     }
 
     @Test
-    internal fun canGetColumnsFromWellFormedBoard() {
+    internal fun canGetColumnsFromSquareBoard() {
 
         assertThat(columns(squareBoard(1)), `is`(listOf(listOf(0))))
 
@@ -52,5 +52,23 @@ class BoardTest {
         assertThrows<IllegalArgumentException> { columns(squareBoard(0)) }
 
         assertThrows<IllegalArgumentException> { columns(squareBoard(-1)) }
+    }
+
+    @Test
+    internal fun canGetDiagonalFromWellFormedBoard() {
+        assertThat(diagonals(squareBoard(1)), `is`(listOf(listOf(0), listOf(0))))
+
+        assertThat(diagonals(squareBoard(2)), `is`(listOf(listOf(0,3), listOf(1,2))))
+
+        assertThat(diagonals(squareBoard(3)), `is`(listOf(listOf(0,4,8), listOf(2,4,6))))
+
+    }
+
+    @Test
+    internal fun malformedBoardDoesNotHaveDiagonals() {
+        assertThat(diagonals(squareBoard(0)), `is`(listOf(listOf(), listOf())))
+
+        assertThat(diagonals(squareBoard(-1)), `is`(listOf(listOf(), listOf())))
+
     }
 }
