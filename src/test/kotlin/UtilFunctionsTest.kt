@@ -47,14 +47,14 @@ class UtilFunctionsTest {
     }
 
     @Test
-    internal fun canAppendAnyElementToAList() {
+    internal fun canConsAnyElementToAList() {
         assertThat(
-            0 append listOf(1, 2, 3, 4, 5),
+            0 cons listOf(1, 2, 3, 4, 5),
             `is`(listOf(0, 1, 2, 3, 4, 5))
         )
 
         assertThat(
-            'a' append listOf(2, 3, 4, 5),
+            'a' cons listOf(2, 3, 4, 5),
             `is`(listOf('a', 2, 3, 4, 5))
         )
     }
