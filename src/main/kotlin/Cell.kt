@@ -1,7 +1,7 @@
 sealed class Cell
 
 object Empty : Cell() {
-    override fun toString(): String = ""
+    override fun toString(): String = " "
 }
 
 data class Taken(val player: Player) : Cell() {

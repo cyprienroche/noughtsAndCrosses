@@ -1,28 +1,26 @@
-import java.lang.IllegalArgumentException
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 
 @DisplayName("Test board data structure")
 class BoardTest {
 
     private fun board2(): Board {
         val board = Board.squareBoard(2)
-        board.place(1, Taken(Player.X))
-        board.place(2, Taken(Player.X))
-        board.place(3, Taken(Player.O))
+        board.place(Position(0,1), Taken(Player.X))
+        board.place(Position(1,0), Taken(Player.X))
+        board.place(Position(1,1), Taken(Player.O))
         return board
     }
 
     private fun board3(): Board {
         val board = Board.squareBoard(3)
-        board.place(0, Taken(Player.X))
-        board.place(1, Taken(Player.X))
-        board.place(2, Taken(Player.X))
-        board.place(4, Taken(Player.O))
-        board.place(8, Taken(Player.O))
+        board.place(Position(0,0), Taken(Player.X))
+        board.place(Position(1,0), Taken(Player.X))
+        board.place(Position(2,0), Taken(Player.X))
+        board.place(Position(1,1), Taken(Player.O))
+        board.place(Position(2,2), Taken(Player.O))
         return board
     }
 
