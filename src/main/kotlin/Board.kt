@@ -1,5 +1,9 @@
 data class Board(val cells: MutableList<Cell>, val dim: Int) {
 
+    companion object {
+        fun squareBoard(dim: Int) = Board((0 until (dim * dim)).map { Empty }.toMutableList(), dim)
+    }
+
     fun rows(): List<List<Cell>> = cells.chunked(dim)
 
     fun columns(): List<List<Cell>> = rows().transpose()
@@ -13,9 +17,5 @@ data class Board(val cells: MutableList<Cell>, val dim: Int) {
             "",
             { acc, row -> acc + row.fold("", { acc, cell -> "$acc$cell " }) + "\n" }
         )
-
-    companion object {
-        fun squareBoard(dim: Int) = Board((0 until (dim * dim)).map { Empty }.toMutableList(), dim)
-    }
 }
 
