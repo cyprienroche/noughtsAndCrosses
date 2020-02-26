@@ -9,7 +9,7 @@ import org.junit.jupiter.api.assertThrows
 class BoardTest {
 
     private fun board2(): Board {
-        val board = squareBoard(2)
+        val board = Board.squareBoard(2)
         board.place(1, Taken(Player.X))
         board.place(2, Taken(Player.X))
         board.place(3, Taken(Player.O))
@@ -17,7 +17,7 @@ class BoardTest {
     }
 
     private fun board3(): Board {
-        val board = squareBoard(3)
+        val board = Board.squareBoard(3)
         board.place(0, Taken(Player.X))
         board.place(1, Taken(Player.X))
         board.place(2, Taken(Player.X))
