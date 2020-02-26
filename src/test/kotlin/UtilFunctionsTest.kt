@@ -86,4 +86,20 @@ class UtilFunctionsTest {
             `is`(listOf(listOf(0, 3), listOf(1)))
         )
     }
+
+    @Test
+    internal fun canGetDiagonalIndexOfSquareBoards() {
+        assertThat(diagIndexes(1), `is`(listOf(listOf(0), listOf(0))))
+
+        assertThat(diagIndexes(2), `is`(listOf(listOf(0, 3), listOf(1, 2))))
+
+        assertThat(diagIndexes(3), `is`(listOf(listOf(0, 4, 8), listOf(2, 4, 6))))
+    }
+
+    @Test
+    internal fun malformedBoardDoesNotHaveDiagonals() {
+        assertThat(diagIndexes(0), `is`(listOf(listOf(), listOf())))
+
+        assertThat(diagIndexes(-1), `is`(listOf(listOf(), listOf())))
+    }
 }

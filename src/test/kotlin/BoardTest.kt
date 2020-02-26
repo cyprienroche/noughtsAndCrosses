@@ -1,4 +1,3 @@
-
 import java.lang.IllegalArgumentException
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
@@ -9,53 +8,86 @@ import org.junit.jupiter.api.assertThrows
 @DisplayName("Test board data structure")
 class BoardTest {
 
-    private fun List<List<Int>>.posToCells(): List<List<Cell>> = this.map { it.map { id -> Empty(id) } }
+    private fun board2(): Board {
+        val board = squareBoard(2)
+        board.place(1, Taken(Player.X))
+        board.place(2, Taken(Player.X))
+        board.place(3, Taken(Player.O))
+        return board
+    }
 
-    @Test
-    internal fun canGetRowsFromSquaredBoard() {
-        assertThat(rows(squareBoard(1)), `is`(listOf(listOf(0)).posToCells()))
-
-        assertThat(rows(squareBoard(2)), `is`(listOf(listOf(0, 1), listOf(2, 3)).posToCells()))
-
-        assertThat(rows(squareBoard(3)), `is`(listOf(listOf(0, 1, 2), listOf(3, 4, 5), listOf(6, 7, 8)).posToCells()))
+    private fun board3(): Board {
+        val board = squareBoard(3)
+        board.place(0, Taken(Player.X))
+        board.place(1, Taken(Player.X))
+        board.place(2, Taken(Player.X))
+        board.place(4, Taken(Player.O))
+        board.place(8, Taken(Player.O))
+        return board
     }
 
     @Test
-    internal fun rowsFromMalformedBoardThrowsException() {
-        assertThrows<IllegalArgumentException> { rows(squareBoard(0)) }
+    internal fun canGetRowsCorrectly2By2() {
+        val expected: List<List<Cell>> =
+            listOf(
+                listOf(Empty, Taken(Player.X)),
+                listOf(Taken(Player.X), Taken(Player.O))
+            )
 
-        assertThrows<IllegalArgumentException> { rows(squareBoard(-1)) }
+        assertThat(board2().rows(), `is`(expected))
     }
 
     @Test
-    internal fun canGetColumnsFromSquareBoard() {
-        assertThat(columns(squareBoard(1)), `is`(listOf(listOf(0)).posToCells()))
-
-        assertThat(columns(squareBoard(2)), `is`(listOf(listOf(0, 2), listOf(1, 3)).posToCells()))
-
-        assertThat(columns(squareBoard(3)), `is`(listOf(listOf(0, 3, 6), listOf(1, 4, 7), listOf(2, 5, 8)).posToCells()))
+    internal fun canGetRowsCorrectly3By3() {
+        val expected: List<List<Cell>> =
+            listOf(
+                listOf(Taken(Player.X), Taken(Player.X), Taken(Player.X)),
+                listOf(Empty, Taken(Player.O), Empty),
+                listOf(Empty, Empty, Taken(Player.O))
+            )
+        assertThat(board3().rows(), `is`(expected))
     }
 
     @Test
-    internal fun columnsFromMalformedBoardThrowsException() {
-        assertThrows<IllegalArgumentException> { columns(squareBoard(0)) }
+    internal fun canGetColumnsCorrectly2By2() {
+        val expected: List<List<Cell>> =
+            listOf(
+                listOf(Empty, Taken(Player.X)),
+                listOf(Taken(Player.X), Taken(Player.O))
+            )
 
-        assertThrows<IllegalArgumentException> { columns(squareBoard(-1)) }
+        assertThat(board2().columns(), `is`(expected))
     }
 
     @Test
-    internal fun canGetDiagonalFromWellFormedBoard() {
-        assertThat(diagonals(squareBoard(1)), `is`(listOf(listOf(0), listOf(0)).posToCells()))
-
-        assertThat(diagonals(squareBoard(2)), `is`(listOf(listOf(0, 3), listOf(1, 2)).posToCells()))
-
-        assertThat(diagonals(squareBoard(3)), `is`(listOf(listOf(0, 4, 8), listOf(2, 4, 6)).posToCells()))
+    internal fun canGetColumnsCorrectly3By3() {
+        val expected: List<List<Cell>> =
+            listOf(
+                listOf(Taken(Player.X), Empty, Empty),
+                listOf(Taken(Player.X), Taken(Player.O), Empty),
+                listOf(Taken(Player.X), Empty, Taken(Player.O))
+            )
+        assertThat(board3().columns(), `is`(expected))
     }
 
     @Test
-    internal fun malformedBoardDoesNotHaveDiagonals() {
-        assertThat(diagonals(squareBoard(0)), `is`(listOf(listOf(), listOf())))
+    internal fun canGetDiagonalsCorrectly2By2() {
+        val expected: List<List<Cell>> =
+            listOf(
+                listOf(Empty, Taken(Player.O)),
+                listOf(Taken(Player.X), Taken(Player.X))
+            )
 
-        assertThat(diagonals(squareBoard(-1)), `is`(listOf(listOf(), listOf())))
+        assertThat(board2().diagonals(), `is`(expected))
+    }
+
+    @Test
+    internal fun canGetDiagonalsCorrectly3By3() {
+        val expected: List<List<Cell>> =
+            listOf(
+                listOf(Taken(Player.X), Taken(Player.O), Taken(Player.O)),
+                listOf(Taken(Player.X), Taken(Player.O), Empty)
+            )
+        assertThat(board3().diagonals(), `is`(expected))
     }
 }
