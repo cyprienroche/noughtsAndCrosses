@@ -88,4 +88,41 @@ class BoardTest {
             )
         assertThat(board3().diagonals(), `is`(expected))
     }
+
+    @Test
+    internal fun canPrettyPrint2By2() {
+        val expected = """
+              X 
+            X O 
+            
+        """.trimIndent()
+
+        assertThat(board2().toStringPretty(), `is`(expected))
+    }
+
+    @Test
+    internal fun canPrettyPrint3By3() {
+        val expected = """
+            X X X 
+              O   
+                O 
+            
+        """.trimIndent()
+
+        assertThat(board3().toStringPretty(), `is`(expected))
+    }
+
+
+    @Test
+    internal fun canPrintWithCoordinates2By2() {
+        val expected = """
+              X | 0
+            X O | 1
+            - - 
+            0 1 
+            
+        """.trimIndent()
+
+        assertThat(board2().toStringWithCoordinates(), `is`(expected))
+    }
 }

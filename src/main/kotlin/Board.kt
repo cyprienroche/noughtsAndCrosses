@@ -15,13 +15,15 @@ data class Board(val cells: MutableList<Cell>, val dim: Int) {
     fun toStringPretty(): String =
         rows().fold(
             "",
-            { acc, row -> acc + row.fold("", { acc, cell -> "$acc$cell " }) + "\n" }
+            { acc, row -> acc + row.fold("", { acc, cell -> "$acc$cell " }) + '\n' }
         )
 
     fun toStringWithCoordinates(): String =
         rows().foldIndexed(
             "",
             { j, acc, row -> acc + row.fold("", { acc, cell -> "$acc$cell " }) + "| $j\n" }
-        ) + (0 until dim).fold("", {acc, i -> "$acc- "}) + (0 until dim).fold("\n", {acc, i -> "$acc$i "})
+        ) + (0 until dim).fold("", {acc, i -> "$acc- "}) +
+            (0 until dim).fold("\n", {acc, i -> "$acc$i "}) +
+            '\n'
 }
 
