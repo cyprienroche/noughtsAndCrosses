@@ -1,4 +1,9 @@
-sealed class Cell
+sealed class Cell {
+    fun isTakenBy(p: Player) = when (this) {
+        is Empty -> false
+        is Taken -> this.player == p
+    }
+}
 
 object Empty : Cell() {
     override fun toString(): String = " "

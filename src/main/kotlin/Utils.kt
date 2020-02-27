@@ -1,4 +1,3 @@
-
 fun <E> List<E>.head(): E = first()
 
 fun <E> List<E>.tail(): List<E> = drop(1)

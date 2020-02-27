@@ -2,6 +2,7 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import java.util.Optional
 
 @DisplayName("Test board data structure")
 class BoardTest {
@@ -14,6 +15,12 @@ class BoardTest {
         return board
     }
 
+    private fun board2NotOver(): Board {
+        val board = Board.squareBoard(2)
+        board.place(Taken(Player.O), Position(0,0))
+        return board
+    }
+
     private fun board3(): Board {
         val board = Board.squareBoard(3)
         board.place(Taken(Player.X), Position(0,0))
@@ -21,6 +28,14 @@ class BoardTest {
         board.place(Taken(Player.X), Position(2,0))
         board.place(Taken(Player.O), Position(1,1))
         board.place(Taken(Player.O), Position(2,2))
+        return board
+    }
+
+    private fun board3NotOver(): Board {
+        val board = Board.squareBoard(3)
+        board.place(Taken(Player.X), Position(0,0))
+        board.place(Taken(Player.O), Position(1,1))
+        board.place(Taken(Player.X), Position(2,2))
         return board
     }
 
@@ -124,5 +139,29 @@ class BoardTest {
         """.trimIndent()
 
         assertThat(board2().toStringWithCoordinates(), `is`(expected))
+    }
+
+    @Test
+    internal fun canTellWinner2By2() {
+        assertThat(board2().winner(), `is`(Optional.of(Player.X)))
+        assertThat(board2NotOver().winner(), `is`(Optional.empty()))
+    }
+
+    @Test
+    internal fun canTellGameState2By2() {
+        assertThat(board2().isGameOver(), `is`(true))
+        assertThat(board2NotOver().isGameOver(), `is`(false))
+    }
+
+    @Test
+    internal fun canTellWinner3By3() {
+        assertThat(board3().winner(), `is`(Optional.of(Player.X)))
+        assertThat(board3NotOver().winner(), `is`(Optional.empty()))
+    }
+
+    @Test
+    internal fun canTellGameState3By3() {
+        assertThat(board3().isGameOver(), `is`(true))
+        assertThat(board3NotOver().isGameOver(), `is`(false))
     }
 }

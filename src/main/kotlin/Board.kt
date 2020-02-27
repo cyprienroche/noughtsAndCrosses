@@ -1,3 +1,5 @@
+import java.util.Optional
+
 data class Board(val cells: MutableList<Cell>, val dim: Int) {
 
     companion object {
@@ -25,5 +27,18 @@ data class Board(val cells: MutableList<Cell>, val dim: Int) {
 
     private fun rowToString(row: List<Cell>, postfix: String): String =
         row.fold("", { acc, cell -> "$acc$cell " }) + postfix
+
+    fun isGameOver(): Boolean = winner().isPresent
+
+    fun winner(): Optional<Player> = when {
+        hasWon(Player.X) -> Optional.of(Player.X)
+        hasWon(Player.O) -> Optional.of(Player.O)
+        else -> Optional.empty()
+    }
+
+    fun hasWon(p: Player): Boolean =
+        hasFilledAny(p, rows()) || hasFilledAny(p, columns()) || hasFilledAny(p, diagonals())
+
+    fun hasFilledAny(p: Player, cells: List<List<Cell>>): Boolean = cells.any { cell -> cell.all { it.isTakenBy(p) } }
 }
 
