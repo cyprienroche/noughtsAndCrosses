@@ -18,10 +18,10 @@ data class Board(val cells: MutableList<Cell>, val dim: Int) {
 
     fun toStringWithCoordinates(): String =
         rows().foldIndexed("", { j, acc, row -> acc + rowToString(row, "| $j\n") }) +
-            foldUntilDim { acc, _ -> "$acc- " } +
-            foldUntilDim { acc, i -> "$acc$i " }
+            foldUntilDim { acc, _ -> "$acc- " } + '\n' +
+            foldUntilDim { acc, i -> "$acc$i " } + '\n'
 
-    private fun foldUntilDim(lambda: (String, Int) -> String): String = (0 until dim).fold("", lambda) + '\n'
+    private fun foldUntilDim(lambda: (String, Int) -> String): String = (0 until dim).fold("", lambda)
 
     private fun rowToString(row: List<Cell>, postfix: String): String =
         row.fold("", { acc, cell -> "$acc$cell " }) + postfix
