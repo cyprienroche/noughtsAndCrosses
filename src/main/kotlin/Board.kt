@@ -30,11 +30,8 @@ data class Board(val cells: MutableList<Cell>, val dim: Int) {
 
     fun isGameOver(): Boolean = winner().isPresent
 
-    fun winner(): Optional<Player> = when {
-        hasWon(Player.X) -> Optional.of(Player.X)
-        hasWon(Player.O) -> Optional.of(Player.O)
-        else -> Optional.empty()
-    }
+    fun winner(): Optional<Player> =
+        Player.values().filter { hasWon(it) }.ifEmpty { return Optional.empty() }.map { Optional.of(it) }.head()
 
     private fun hasWon(p: Player): Boolean =
         p.hasFilledAny(rows()) || p.hasFilledAny(columns()) || p.hasFilledAny(diagonals())
