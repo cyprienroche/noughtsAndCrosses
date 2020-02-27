@@ -36,9 +36,10 @@ data class Board(val cells: MutableList<Cell>, val dim: Int) {
         else -> Optional.empty()
     }
 
-    fun hasWon(p: Player): Boolean =
-        hasFilledAny(p, rows()) || hasFilledAny(p, columns()) || hasFilledAny(p, diagonals())
+    private fun hasWon(p: Player): Boolean =
+        p.hasFilledAny(rows()) || p.hasFilledAny(columns()) || p.hasFilledAny(diagonals())
 
-    fun hasFilledAny(p: Player, cells: List<List<Cell>>): Boolean = cells.any { cell -> cell.all { it.isTakenBy(p) } }
+    private fun Player.hasFilledAny(cells: List<List<Cell>>): Boolean =
+        cells.any { cell -> cell.all { it.isTakenBy(this) } }
 }
 
