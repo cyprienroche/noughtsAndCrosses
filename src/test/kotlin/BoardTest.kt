@@ -8,19 +8,19 @@ class BoardTest {
 
     private fun board2(): Board {
         val board = Board.squareBoard(2)
-        board.place(Position(0,1), Taken(Player.X))
-        board.place(Position(1,0), Taken(Player.X))
-        board.place(Position(1,1), Taken(Player.O))
+        board.place(Taken(Player.X), Position(0,1))
+        board.place(Taken(Player.X), Position(1,0))
+        board.place(Taken(Player.O), Position(1,1))
         return board
     }
 
     private fun board3(): Board {
         val board = Board.squareBoard(3)
-        board.place(Position(0,0), Taken(Player.X))
-        board.place(Position(1,0), Taken(Player.X))
-        board.place(Position(2,0), Taken(Player.X))
-        board.place(Position(1,1), Taken(Player.O))
-        board.place(Position(2,2), Taken(Player.O))
+        board.place(Taken(Player.X), Position(0,0))
+        board.place(Taken(Player.X), Position(1,0))
+        board.place(Taken(Player.X), Position(2,0))
+        board.place(Taken(Player.O), Position(1,1))
+        board.place(Taken(Player.O), Position(2,2))
         return board
     }
 

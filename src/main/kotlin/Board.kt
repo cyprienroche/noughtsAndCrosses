@@ -10,20 +10,20 @@ data class Board(val cells: MutableList<Cell>, val dim: Int) {
 
     fun diagonals(): List<List<Cell>> = diagIndexes(dim).map { indexes -> indexes.map { cells[it] } }
 
-    fun place(p: Position, cell: Cell) = cells.set(p.x + p.y * dim, cell)
+    fun place(cell: Cell, p: Position): Unit {
+        cells[p.x + p.y * dim] = cell
+    }
 
-    fun toStringPretty(): String =
-        rows().fold(
-            "",
-            { acc, row -> acc + row.fold("", { acc, cell -> "$acc$cell " }) + '\n' }
-        )
+    fun toStringPretty(): String = rows().fold("", { acc, row -> acc + rowToString(row, "\n") })
 
     fun toStringWithCoordinates(): String =
-        rows().foldIndexed(
-            "",
-            { j, acc, row -> acc + row.fold("", { acc, cell -> "$acc$cell " }) + "| $j\n" }
-        ) + (0 until dim).fold("", {acc, i -> "$acc- "}) +
-            (0 until dim).fold("\n", {acc, i -> "$acc$i "}) +
-            '\n'
+        rows().foldIndexed("", { j, acc, row -> acc + rowToString(row, "| $j\n") }) +
+            foldUntilDim { acc, _ -> "$acc- " } +
+            foldUntilDim { acc, i -> "$acc$i " }
+
+    private fun foldUntilDim(lambda: (String, Int) -> String): String = (0 until dim).fold("", lambda) + '\n'
+
+    private fun rowToString(row: List<Cell>, postfix: String): String =
+        row.fold("", { acc, cell -> "$acc$cell " }) + postfix
 }
 
