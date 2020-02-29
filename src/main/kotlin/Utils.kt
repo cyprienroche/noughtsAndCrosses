@@ -18,3 +18,5 @@ private fun diagIndexSE(n: Int) = (0..n - 1).map { it * (n + 1) }
 fun diagIndexes(n: Int) = listOf(diagIndexSE(n), diagIndexSW(n))
 
 fun isPerfectSquare(n: Int): Boolean = sqrt(n.toDouble()).toInt() * sqrt(n.toDouble()).toInt() == n
+
+fun nextPlayer(player: Player): Player = Player.values()[(player.ordinal + 1) % Player.values().size]

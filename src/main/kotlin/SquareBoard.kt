@@ -3,7 +3,7 @@ import kotlin.math.sqrt
 
 class SquareBoard : Board {
 
-    private val dim: Int
+    val dim: Int
     private val cells: MutableList<Cell>
 
     constructor(dim: Int) {
