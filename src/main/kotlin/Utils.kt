@@ -1,10 +1,10 @@
 import kotlin.math.sqrt
 
-fun <E> List<E>.head(): E = first()
+private fun <E> List<E>.head(): E = first()
 
-fun <E> List<E>.tail(): List<E> = drop(1)
+private fun <E> List<E>.tail(): List<E> = drop(1)
 
-infix fun <E> E.cons(xs: List<E>): List<E> = listOf(this).plus(xs)
+private infix fun <E> E.cons(xs: List<E>): List<E> = listOf(this).plus(xs)
 
 fun <E> List<List<E>>.transpose(): List<List<E>> = when {
     this.first().isEmpty() -> emptyList()

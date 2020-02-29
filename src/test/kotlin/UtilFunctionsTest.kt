@@ -10,59 +10,6 @@ import org.junit.jupiter.api.assertThrows
 class UtilFunctionsTest {
 
     @Test
-    internal fun canTakeHeadOfNoneEmptyList() {
-        assertThat(
-            listOf(0, 1, 2, 3, 4, 5).head(),
-            `is`(0)
-        )
-
-        assertThat(
-            listOf(1, 2).head(),
-            `is`(1)
-        )
-    }
-
-
-    @Test
-    internal fun headOfEmptyListThrowsException() {
-        assertThrows<NoSuchElementException> { emptyList<Any>().head() }
-    }
-
-    @Test
-    internal fun canTakeTailOfNoneEmptyList() {
-        assertThat(
-            listOf(0, 1, 2, 3, 4, 5).tail(),
-            `is`(listOf(1, 2, 3, 4, 5))
-        )
-
-        assertThat(
-            listOf(1, 2).tail(),
-            `is`(listOf(2))
-        )
-    }
-
-    @Test
-    internal fun tailOfEmptyListIsEmptyList() {
-        assertThat(
-            emptyList<Any>().tail(),
-            `is`(emptyList())
-        )
-    }
-
-    @Test
-    internal fun canConsAnyElementToAList() {
-        assertThat(
-            0 cons listOf(1, 2, 3, 4, 5),
-            `is`(listOf(0, 1, 2, 3, 4, 5))
-        )
-
-        assertThat(
-            'a' cons listOf(2, 3, 4, 5),
-            `is`(listOf('a', 2, 3, 4, 5))
-        )
-    }
-
-    @Test
     internal fun canTransposeListOfListOfAnyLength() {
         assertThat(
             listOf(listOf(0, 1), listOf(2, 3)).transpose(),
