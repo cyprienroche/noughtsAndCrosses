@@ -4,10 +4,14 @@ class DimTwoBoardInterpreter(private val scanner: Scanner) : BoardInterpreter {
 
     private var currentPlayer: Player = Player.values()[0]
     private val board: Board
+    private val n: Int
+    private val m: Int
 
     init {
-        val (m, n) = getBoardSize()
+        val (n, m) = getBoardSize()
         board = SquareBoard(n)
+        this.n = n
+        this.m = m
     }
 
     private fun getBoardSize(): Pair<Int, Int> {
@@ -29,7 +33,7 @@ class DimTwoBoardInterpreter(private val scanner: Scanner) : BoardInterpreter {
     }
 
     private fun getPosition(): Position {
-        println("Place $currentPlayer at position: (where 0 <= x, y < ${board.dim})")
+        println("Place $currentPlayer at position: (where 0 <= x < $n and 0 <= y < $m)")
         val (x, y) = readTwoInt { x, y -> x < 0 || y < 0 }
         return Position(x, y)
     }
