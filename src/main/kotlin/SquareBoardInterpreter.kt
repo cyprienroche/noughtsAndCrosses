@@ -1,6 +1,6 @@
 import java.util.Scanner
 
-class SquareBoardInterpreter(private val scanner: Scanner, private val dim: Int): BoardInterpreter {
+class SquareBoardInterpreter(private val scanner: Scanner, private val dim: Int) : BoardInterpreter {
 
     private var currentPlayer: Player = Player.values()[0]
     private val board: SquareBoard = SquareBoard(dim)
