@@ -1,7 +1,7 @@
 import java.lang.IllegalArgumentException
 import kotlin.math.sqrt
 
-class SquareBoard: Board {
+class SquareBoard : Board {
 
     private val dim: Int
     private val cells: MutableList<Cell>
@@ -18,12 +18,12 @@ class SquareBoard: Board {
         checkValidSquareBoard()
     }
 
-    private fun checkValidSquareBoard(): Unit {
+    private fun checkValidSquareBoard() {
         if (dim < 1) throw IllegalArgumentException("square board dimension must be greater than zero")
         if (!isPerfectSquare(cells.size)) throw IllegalArgumentException("square board must have perfect square dimension, but dimension $dim is not")
     }
 
-    private fun fillToWin() = listOf(rows(),  columns(), diagonals())
+    private fun fillToWin() = listOf(rows(), columns(), diagonals())
 
     fun rows(): List<List<Cell>> = cells.chunked(dim)
 
@@ -31,13 +31,13 @@ class SquareBoard: Board {
 
     fun diagonals(): List<List<Cell>> = diagIndexes(dim).map { indexes -> indexes.map { cells[it] } }
 
-    fun place(cell: Cell, p: Position): Unit {
+    fun place(cell: Cell, p: Position) {
         cells[p.x + p.y * dim] = cell
     }
 
     fun isGameOver(): Boolean = winner() != null
 
-    override fun winner(): Player? = Player.values().firstOrNull{ hasWon(it) }
+    override fun winner(): Player? = Player.values().firstOrNull { hasWon(it) }
 
     private fun hasWon(p: Player): Boolean = fillToWin().any { p.hasFilledAny(it) }
 
@@ -56,4 +56,3 @@ class SquareBoard: Board {
     private fun rowToString(row: List<Cell>, postfix: String): String =
         row.fold("", { acc, cell -> "$acc$cell " }) + postfix
 }
-

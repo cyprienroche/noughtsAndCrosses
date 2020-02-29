@@ -1,44 +1,43 @@
+import java.lang.IllegalArgumentException
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
 import org.junit.jupiter.api.Assertions.assertNull
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import java.lang.IllegalArgumentException
 
 @DisplayName("Test board data structure")
 class SquareBoardTest {
 
     private fun board2(): SquareBoard {
         val board = SquareBoard(2)
-        board.place(Taken(Player.X), Position(0,1))
-        board.place(Taken(Player.X), Position(1,0))
-        board.place(Taken(Player.O), Position(1,1))
+        board.place(Taken(Player.X), Position(0, 1))
+        board.place(Taken(Player.X), Position(1, 0))
+        board.place(Taken(Player.O), Position(1, 1))
         return board
     }
 
     private fun board2GameNotOver(): SquareBoard {
         val board = SquareBoard(2)
-        board.place(Taken(Player.O), Position(0,0))
+        board.place(Taken(Player.O), Position(0, 0))
         return board
     }
 
     private fun board3(): SquareBoard {
         val board = SquareBoard(3)
-        board.place(Taken(Player.X), Position(0,0))
-        board.place(Taken(Player.X), Position(1,0))
-        board.place(Taken(Player.X), Position(2,0))
-        board.place(Taken(Player.O), Position(1,1))
-        board.place(Taken(Player.O), Position(2,2))
+        board.place(Taken(Player.X), Position(0, 0))
+        board.place(Taken(Player.X), Position(1, 0))
+        board.place(Taken(Player.X), Position(2, 0))
+        board.place(Taken(Player.O), Position(1, 1))
+        board.place(Taken(Player.O), Position(2, 2))
         return board
     }
 
     private fun board3GameNotOver(): SquareBoard {
         val board = SquareBoard(3)
-        board.place(Taken(Player.X), Position(0,0))
-        board.place(Taken(Player.O), Position(1,1))
-        board.place(Taken(Player.X), Position(2,2))
+        board.place(Taken(Player.X), Position(0, 0))
+        board.place(Taken(Player.O), Position(1, 1))
+        board.place(Taken(Player.X), Position(2, 2))
         return board
     }
 
@@ -53,8 +52,8 @@ class SquareBoardTest {
 
     @Test
     internal fun boardWithDimSmallerThanOneThrowsError() {
-        assertThrows<IllegalArgumentException>{ SquareBoard(0) }
-        assertThrows<IllegalArgumentException>{ SquareBoard(-1) }
+        assertThrows<IllegalArgumentException> { SquareBoard(0) }
+        assertThrows<IllegalArgumentException> { SquareBoard(-1) }
     }
 
     @Test
@@ -144,7 +143,6 @@ class SquareBoardTest {
 
         assertThat(board3().toStringPretty(), `is`(expected))
     }
-
 
     @Test
     internal fun canPrintWithCoordinates2By2() {
