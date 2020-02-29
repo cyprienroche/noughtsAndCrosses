@@ -1,10 +1,10 @@
-import java.util.Optional
-
-data class Board(val cells: MutableList<Cell>, val dim: Int) {
+data class Board(private val cells: MutableList<Cell>, val dim: Int) {
 
     companion object {
         fun squareBoard(dim: Int) = Board((0 until (dim * dim)).map { Empty }.toMutableList(), dim)
     }
+
+    private fun fillToWin() = listOf(rows(),  columns(), diagonals())
 
     fun rows(): List<List<Cell>> = cells.chunked(dim)
 
@@ -15,6 +15,15 @@ data class Board(val cells: MutableList<Cell>, val dim: Int) {
     fun place(cell: Cell, p: Position): Unit {
         cells[p.x + p.y * dim] = cell
     }
+
+    fun isGameOver(): Boolean = winner() != null
+
+    fun winner(): Player? = Player.values().filter { hasWon(it) }.head()
+
+    private fun hasWon(p: Player): Boolean = fillToWin().any { p.hasFilledAny(it) }
+
+    private fun Player.hasFilledAny(cells: List<List<Cell>>): Boolean =
+        cells.any { cell -> cell.all { it.isTakenBy(this) } }
 
     fun toStringPretty(): String = rows().fold("", { acc, row -> acc + rowToString(row, "\n") })
 
@@ -27,16 +36,5 @@ data class Board(val cells: MutableList<Cell>, val dim: Int) {
 
     private fun rowToString(row: List<Cell>, postfix: String): String =
         row.fold("", { acc, cell -> "$acc$cell " }) + postfix
-
-    fun isGameOver(): Boolean = winner().isPresent
-
-    fun winner(): Optional<Player> =
-        Player.values().filter { hasWon(it) }.ifEmpty { return Optional.empty() }.map { Optional.of(it) }.head()
-
-    private fun hasWon(p: Player): Boolean =
-        p.hasFilledAny(rows()) || p.hasFilledAny(columns()) || p.hasFilledAny(diagonals())
-
-    private fun Player.hasFilledAny(cells: List<List<Cell>>): Boolean =
-        cells.any { cell -> cell.all { it.isTakenBy(this) } }
 }
 

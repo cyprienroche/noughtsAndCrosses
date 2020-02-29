@@ -1,8 +1,8 @@
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import java.util.Optional
 
 @DisplayName("Test board data structure")
 class BoardTest {
@@ -143,8 +143,8 @@ class BoardTest {
 
     @Test
     internal fun canTellWinner2By2() {
-        assertThat(board2().winner(), `is`(Optional.of(Player.X)))
-        assertThat(board2NotOver().winner(), `is`(Optional.empty()))
+        assertThat(board2().winner(), `is`(Player.X))
+        assertNull(board2NotOver().winner())
     }
 
     @Test
@@ -155,8 +155,8 @@ class BoardTest {
 
     @Test
     internal fun canTellWinner3By3() {
-        assertThat(board3().winner(), `is`(Optional.of(Player.X)))
-        assertThat(board3NotOver().winner(), `is`(Optional.empty()))
+        assertThat(board3().winner(), `is`(Player.X))
+        assertNull(board3NotOver().winner())
     }
 
     @Test
