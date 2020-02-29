@@ -3,7 +3,7 @@ import kotlin.math.sqrt
 
 class SquareBoard : Board {
 
-    val dim: Int
+    override val dim: Int
     private val cells: MutableList<Cell>
 
     constructor(dim: Int) {
@@ -31,11 +31,11 @@ class SquareBoard : Board {
 
     fun diagonals(): List<List<Cell>> = diagIndexes(dim).map { indexes -> indexes.map { cells[it] } }
 
-    fun place(cell: Cell, p: Position) {
+    override fun place(cell: Cell, p: Position) {
         cells[p.x + p.y * dim] = cell
     }
 
-    fun isGameOver(): Boolean = winner() != null
+    override fun isGameOver(): Boolean = winner() != null
 
     override fun winner(): Player? = Player.values().firstOrNull { hasWon(it) }
 
@@ -43,6 +43,8 @@ class SquareBoard : Board {
 
     private fun Player.hasFilledAny(cells: List<List<Cell>>): Boolean =
         cells.any { cell -> cell.all { it.isTakenBy(this) } }
+
+    override fun toString(): String = toStringPretty()
 
     fun toStringPretty(): String = rows().fold("", { acc, row -> acc + rowToString(row, "\n") })
 
