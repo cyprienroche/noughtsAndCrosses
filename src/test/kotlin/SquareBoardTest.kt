@@ -42,7 +42,6 @@ class SquareBoardTest {
         return board
     }
 
-    @Disabled
     @Test
     internal fun canCreateAnyBoardSizeGreaterThanZero() {
         SquareBoard(1)
