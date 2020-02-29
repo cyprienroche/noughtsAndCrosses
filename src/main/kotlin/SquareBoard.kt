@@ -9,16 +9,16 @@ class SquareBoard: Board {
     constructor(dim: Int) {
         this.dim = dim
         this.cells = (0 until (dim * dim)).map { Empty }.toMutableList()
-        checkValidBoard()
+        checkValidSquareBoard()
     }
 
     constructor(cells: List<Cell>) {
         this.dim = sqrt(cells.size.toDouble()).toInt()
         this.cells = cells.toMutableList()
-        checkValidBoard()
+        checkValidSquareBoard()
     }
 
-    private fun checkValidBoard() {
+    private fun checkValidSquareBoard(): Unit {
         if (dim < 1) throw IllegalArgumentException("square board dimension must be greater than zero")
         if (!isPerfectSquare(cells.size)) throw IllegalArgumentException("square board must have perfect square dimension, but dimension $dim is not")
     }

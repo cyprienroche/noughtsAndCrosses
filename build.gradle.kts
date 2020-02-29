@@ -30,6 +30,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.6.0")
     testImplementation("org.hamcrest:hamcrest-all:1.3")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3")
 }
 
 tasks.test {
