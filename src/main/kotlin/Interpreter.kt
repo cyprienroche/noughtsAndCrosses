@@ -22,14 +22,14 @@ class Interpreter {
             try {
                 dim = scanner.nextInt()
             } catch (e: InputMismatchException) {
-                scanner = Scanner(System.`in`)
-                println("dimension must be an integer\n")
+                scanner.next()
+                println("dimension must be an integer")
             }
         }
         return SquareBoard(dim)
     }
 
-    fun startGame(): Unit {
+    fun startGame() {
         while (!board.isGameOver()) {
             currentPlayer = nextPlayerMove()
             println(board.toStringPretty())
@@ -51,8 +51,9 @@ class Interpreter {
                 x = scanner.nextInt()
                 y = scanner.nextInt()
             } catch (e: Exception) {
-                scanner = Scanner(System.`in`)
-                println("position must be an integer within range 0..${board.dim}\n")
+                scanner.next()
+                scanner.next()
+                println("position must be an integer within range 0..${board.dim}")
             }
         }
         return Position(x, y)
