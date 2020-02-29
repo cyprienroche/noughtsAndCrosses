@@ -1,4 +1,5 @@
 import java.lang.IllegalArgumentException
+import kotlin.math.sqrt
 
 class SquareBoard: Board {
 
@@ -12,14 +13,14 @@ class SquareBoard: Board {
     }
 
     constructor(cells: List<Cell>) {
-        this.dim = cells.size
+        this.dim = sqrt(cells.size.toDouble()).toInt()
         this.cells = cells.toMutableList()
         checkValidBoard()
     }
 
     private fun checkValidBoard() {
         if (dim < 1) throw IllegalArgumentException("square board dimension must be greater than zero")
-        if (isPerfectSquare(dim)) throw IllegalArgumentException("square board must have perfect square dimension")
+        if (!isPerfectSquare(cells.size)) throw IllegalArgumentException("square board must have perfect square dimension, but dimension $dim is not")
     }
 
     private fun fillToWin() = listOf(rows(),  columns(), diagonals())

@@ -46,7 +46,7 @@ class SquareBoardTest {
     internal fun canCreateAnyBoardSizeGreaterThanZero() {
         SquareBoard(1)
         SquareBoard(listOf(Taken(Player.X)))
-        SquareBoard(listOf(Taken(Player.X), Taken(Player.O)))
+        SquareBoard(listOf(Taken(Player.X), Taken(Player.O), Empty, Empty))
         SquareBoard(2)
         SquareBoard(3)
     }
