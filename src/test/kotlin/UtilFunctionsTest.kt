@@ -1,6 +1,9 @@
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertNull
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
@@ -20,6 +23,7 @@ class UtilFunctionsTest {
         )
     }
 
+    @Disabled
     @Test
     internal fun headOfEmptyListReturnsNull() {
         assertNull(emptyList<Any>().head())
@@ -101,5 +105,17 @@ class UtilFunctionsTest {
         assertThat(diagIndexes(0), `is`(listOf(listOf(), listOf())))
 
         assertThat(diagIndexes(-1), `is`(listOf(listOf(), listOf())))
+    }
+
+    @Test
+    internal fun canTellIfNumberIsPerfectSquare() {
+        assertTrue(isPerfectSquare(1))
+        assertTrue(isPerfectSquare(4))
+        assertTrue(isPerfectSquare(9))
+
+        assertFalse(isPerfectSquare(2))
+        assertFalse(isPerfectSquare(3))
+        assertFalse(isPerfectSquare(5))
+        assertFalse(isPerfectSquare(7))
     }
 }

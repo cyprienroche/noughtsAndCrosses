@@ -1,8 +1,5 @@
 sealed class Cell {
-    fun isTakenBy(p: Player) = when (this) {
-        is Empty -> false
-        is Taken -> this.player == p
-    }
+    fun isTakenBy(p: Player) = this is Taken && player == p
 }
 
 object Empty : Cell() {
