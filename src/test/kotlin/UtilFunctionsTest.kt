@@ -1,11 +1,10 @@
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
 import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 @DisplayName("Test util functions on lists")
 class UtilFunctionsTest {
@@ -23,10 +22,10 @@ class UtilFunctionsTest {
         )
     }
 
-    @Disabled
+
     @Test
-    internal fun headOfEmptyListReturnsNull() {
-        assertNull(emptyList<Any>().head())
+    internal fun headOfEmptyListThrowsException() {
+        assertThrows<NoSuchElementException> { emptyList<Any>().head() }
     }
 
     @Test
