@@ -1,3 +1,4 @@
+import java.util.Scanner
 import kotlin.math.sqrt
 
 private fun <E> List<E>.head(): E = first()
@@ -25,3 +26,17 @@ fun isPerfectSquare(n: Int): Boolean = sqrt(n.toDouble()).toInt() * sqrt(n.toDou
 
 // return the next player after the given player according to the order given in the enum Player
 fun nextPlayer(player: Player): Player = Player.values()[(player.ordinal + 1) % Player.values().size]
+
+// keeps asking the user for an integer until provided with an integer which satisfies the given condition cond
+fun readAnInt(scanner: Scanner, initial: Int, cond: (Int) -> Boolean): Int {
+    var x = initial
+    while (!cond(x)) {
+        try {
+            x = scanner.nextInt()
+        } catch (e: Exception) {
+            scanner.next()
+            println("input must be an integer")
+        }
+    }
+    return x
+}
