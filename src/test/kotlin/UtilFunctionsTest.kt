@@ -1,9 +1,16 @@
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.ValueSource
+import java.util.stream.Stream
 
 @DisplayName("Test util functions on lists")
 class UtilFunctionsTest {
@@ -62,5 +69,15 @@ class UtilFunctionsTest {
         assertFalse(isPerfectSquare(3))
         assertFalse(isPerfectSquare(5))
         assertFalse(isPerfectSquare(7))
+    }
+    companion object {
+        @JvmStatic
+        fun squares() = (Player.values().indices).map { Arguments.of(it) }.toList()
+    }
+
+    @ParameterizedTest(name = "Next player after {0} should be {1}")
+    @MethodSource("squares")
+    fun canGetNextPlayer(input: Int) {
+            assertThat(nextPlayer(Player.values()[input]), `is`(Player.values()[(input + 1) % Player.values().size]))
     }
 }

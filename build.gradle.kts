@@ -10,7 +10,7 @@ plugins {
 
 group = "Cyprien Roche"
 version = "0.1.0"
-description = """Myla Compiler"""
+description = """Noughts And Crosses"""
 application.mainClassName = "MainKt"
 
 java.sourceCompatibility = JavaVersion.VERSION_11

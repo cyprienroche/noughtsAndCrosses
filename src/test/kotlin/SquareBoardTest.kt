@@ -9,7 +9,7 @@ import org.junit.jupiter.api.assertThrows
 @DisplayName("Test board data structure")
 class SquareBoardTest {
 
-    private fun board2(): SquareBoard {
+    private fun board2WinnerX(): SquareBoard {
         val board = SquareBoard(2)
         board.place(Taken(Player.X), Position(0, 1))
         board.place(Taken(Player.X), Position(1, 0))
@@ -23,7 +23,7 @@ class SquareBoardTest {
         return board
     }
 
-    private fun board3(): SquareBoard {
+    private fun board3WinnerX(): SquareBoard {
         val board = SquareBoard(3)
         board.place(Taken(Player.X), Position(0, 0))
         board.place(Taken(Player.X), Position(1, 0))
@@ -64,7 +64,7 @@ class SquareBoardTest {
                 listOf(Taken(Player.X), Taken(Player.O))
             )
 
-        assertThat(board2().rows(), `is`(expected))
+        assertThat(board2WinnerX().rows(), `is`(expected))
     }
 
     @Test
@@ -75,7 +75,7 @@ class SquareBoardTest {
                 listOf(Empty, Taken(Player.O), Empty),
                 listOf(Empty, Empty, Taken(Player.O))
             )
-        assertThat(board3().rows(), `is`(expected))
+        assertThat(board3WinnerX().rows(), `is`(expected))
     }
 
     @Test
@@ -86,7 +86,7 @@ class SquareBoardTest {
                 listOf(Taken(Player.X), Taken(Player.O))
             )
 
-        assertThat(board2().columns(), `is`(expected))
+        assertThat(board2WinnerX().columns(), `is`(expected))
     }
 
     @Test
@@ -97,7 +97,7 @@ class SquareBoardTest {
                 listOf(Taken(Player.X), Taken(Player.O), Empty),
                 listOf(Taken(Player.X), Empty, Taken(Player.O))
             )
-        assertThat(board3().columns(), `is`(expected))
+        assertThat(board3WinnerX().columns(), `is`(expected))
     }
 
     @Test
@@ -108,7 +108,7 @@ class SquareBoardTest {
                 listOf(Taken(Player.X), Taken(Player.X))
             )
 
-        assertThat(board2().diagonals(), `is`(expected))
+        assertThat(board2WinnerX().diagonals(), `is`(expected))
     }
 
     @Test
@@ -118,7 +118,7 @@ class SquareBoardTest {
                 listOf(Taken(Player.X), Taken(Player.O), Taken(Player.O)),
                 listOf(Taken(Player.X), Taken(Player.O), Empty)
             )
-        assertThat(board3().diagonals(), `is`(expected))
+        assertThat(board3WinnerX().diagonals(), `is`(expected))
     }
 
     @Test
@@ -129,7 +129,7 @@ class SquareBoardTest {
             
         """.trimIndent()
 
-        assertThat(board2().toStringPretty(), `is`(expected))
+        assertThat(board2WinnerX().toStringPretty(), `is`(expected))
     }
 
     @Test
@@ -141,7 +141,7 @@ class SquareBoardTest {
             
         """.trimIndent()
 
-        assertThat(board3().toStringPretty(), `is`(expected))
+        assertThat(board3WinnerX().toStringPretty(), `is`(expected))
     }
 
     @Test
@@ -154,30 +154,30 @@ class SquareBoardTest {
             
         """.trimIndent()
 
-        assertThat(board2().toStringWithCoordinates(), `is`(expected))
+        assertThat(board2WinnerX().toStringWithCoordinates(), `is`(expected))
     }
 
     @Test
     internal fun canTellWinner2By2() {
-        assertThat(board2().winner(), `is`(Player.X))
+        assertThat(board2WinnerX().winner(), `is`(Player.X))
         assertNull(board2GameNotOver().winner())
     }
 
     @Test
     internal fun canTellGameState2By2() {
-        assertThat(board2().isGameOver(), `is`(true))
+        assertThat(board2WinnerX().isGameOver(), `is`(true))
         assertThat(board2GameNotOver().isGameOver(), `is`(false))
     }
 
     @Test
     internal fun canTellWinner3By3() {
-        assertThat(board3().winner(), `is`(Player.X))
+        assertThat(board3WinnerX().winner(), `is`(Player.X))
         assertNull(board3GameNotOver().winner())
     }
 
     @Test
     internal fun canTellGameState3By3() {
-        assertThat(board3().isGameOver(), `is`(true))
+        assertThat(board3WinnerX().isGameOver(), `is`(true))
         assertThat(board3GameNotOver().isGameOver(), `is`(false))
     }
 }

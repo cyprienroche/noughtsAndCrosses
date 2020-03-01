@@ -10,11 +10,27 @@ class BoardTest {
     private val board1WinnerX: Board = SquareBoard(listOf(Taken(Player.X)))
     private val board1NoWinner: Board = SquareBoard(2)
 
-    private val board2WinnerX: Board = SquareBoard(listOf(Taken(Player.X), Taken(Player.X), Taken(Player.O), Empty))
-    private val board2NoWinner: Board = SquareBoard(listOf(Taken(Player.X), Taken(Player.O), Empty, Empty))
+    private val board2WinnerX: Board = SquareBoard(
+        listOf(
+            Taken(Player.X), Taken(Player.X),
+            Taken(Player.O), Empty
+        )
+    )
+    private val board2NoWinner: Board = SquareBoard(
+        listOf(
+            Taken(Player.X), Taken(Player.O),
+            Empty, Empty
+        )
+    )
 
     private val board3NoWinner: Board = SquareBoard(3)
-    private val board3WinnerO: Board = SquareBoard(listOf(Taken(Player.O), Taken(Player.X), Empty, Empty, Taken(Player.O), Taken(Player.X), Empty, Empty, Taken(Player.O)))
+    private val board3WinnerO: Board = SquareBoard(
+        listOf(
+            Taken(Player.O), Taken(Player.X), Empty,
+            Empty, Taken(Player.O), Taken(Player.X),
+            Empty, Empty, Taken(Player.O)
+        )
+    )
 
     @Test
     internal fun correctlyIdentifyWinner1By1() {
