@@ -4,14 +4,17 @@ import kotlin.math.sqrt
 class SquareBoard : Board {
 
     private val size: Int
+    // euclidean position (i, j) on the board has index (i + j * size) in the cells list
     private val cells: MutableList<Cell>
 
+    // creates a board of size dim filled with empty cells
     constructor(dim: Int) {
         this.size = dim
         this.cells = (0 until (dim * dim)).map { Empty }.toMutableList()
         checkValidSquareBoard()
     }
 
+    // creates a board with the cells provided, which must have a perfect square size
     constructor(cells: List<Cell>) {
         this.size = sqrt(cells.size.toDouble()).toInt()
         this.cells = cells.toMutableList()

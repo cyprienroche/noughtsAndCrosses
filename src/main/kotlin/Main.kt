@@ -1,5 +1,6 @@
 import java.util.Scanner
 
+/* please see the README.md file */
 fun main() {
     welcomeMessage()
     val scanner = Scanner(System.`in`)
