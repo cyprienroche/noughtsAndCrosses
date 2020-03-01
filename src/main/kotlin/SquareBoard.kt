@@ -18,7 +18,7 @@ class SquareBoard : Board {
         checkValidSquareBoard()
     }
 
-    private fun checkValidSquareBoard(): Unit {
+    private fun checkValidSquareBoard() {
         if (size < 1) throw IllegalArgumentException("square board dimension must be greater than zero")
         if (!isPerfectSquare(cells.size)) throw IllegalArgumentException("square board must have perfect square dimension, but dimension $size is not")
     }
@@ -32,7 +32,7 @@ class SquareBoard : Board {
 
     fun diagonals(): List<List<Cell>> = diagIndexes(size).map { indexes -> indexes.map { cells[it] } }
 
-    override fun place(cell: Cell, p: Position): Unit {
+    override fun place(cell: Cell, p: Position) {
         cells[p.x + p.y * size] = cell
     }
 
