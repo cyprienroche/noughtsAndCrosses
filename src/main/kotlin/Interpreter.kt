@@ -3,8 +3,8 @@ import java.util.Scanner
 class Interpreter {
 
     private val scanner: Scanner = Scanner(System.`in`)
-    private val board: Board
     private var currentPlayer: Player = Player.values()[0]
+    private val board: Board
     private val n: Int
 
     init {

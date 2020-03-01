@@ -1,0 +1,11 @@
+#!/bin/bash
+
+system="$(uname -s)"
+case "${system}" in
+    CYGWIN | MINGW*)    binary=noughtsAndCrosses.bat;;
+    *)                  binary=noughtsAndCrosses
+esac
+
+make
+clear
+./build/install/noughtsAndCrosses/bin/${binary}
