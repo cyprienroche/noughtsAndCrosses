@@ -1,3 +1,4 @@
+// Cell that make up a Board
 sealed class Cell {
     fun isTakenBy(p: Player) = this is Taken && player == p
 }

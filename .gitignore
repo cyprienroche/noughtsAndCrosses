@@ -9,3 +9,6 @@ build/
 
 #ignore junk macOS generated files
 .DS_Store
+
+#ignore .zip files
+*.zip

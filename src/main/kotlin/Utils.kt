@@ -11,12 +11,17 @@ fun <E> List<List<E>>.transpose(): List<List<E>> = when {
     else -> this.asSequence().filter { it.isNotEmpty() }.map { it.head() }.toList() cons this.map { it.tail() }.transpose()
 }
 
-private fun diagIndexSW(n: Int) = (1..n).map { it * (n - 1) }
+// return the diagonal index of a square, starting from top-right down to bottom-left corner
+private fun diagIndexSW(n: Int): List<Int> = (1..n).map { it * (n - 1) }
 
-private fun diagIndexSE(n: Int) = (0..n - 1).map { it * (n + 1) }
+// return the diagonal index of a square, starting from top-left down to bottom-right corner.
+private fun diagIndexSE(n: Int): List<Int> = (0..n - 1).map { it * (n + 1) }
 
-fun diagIndexes(n: Int) = listOf(diagIndexSE(n), diagIndexSW(n))
+// return both diagonal indexes of a square
+fun diagIndexes(n: Int): List<List<Int>> = listOf(diagIndexSE(n), diagIndexSW(n))
 
+// return true if the given integer is a perfect square
 fun isPerfectSquare(n: Int): Boolean = sqrt(n.toDouble()).toInt() * sqrt(n.toDouble()).toInt() == n
 
+// return the next player after the given player according to the order given in the enum Player
 fun nextPlayer(player: Player): Player = Player.values()[(player.ordinal + 1) % Player.values().size]
