@@ -1,2 +1,2 @@
 
-fun main() = Interpreter.setUpBoardInterpreter().startGame()
+fun main() = Interpreter().startGame()
