@@ -27,8 +27,8 @@ class Interpreter {
 
     private fun getPosition(): Position {
         println("Place $currentPlayer at position: (where 0 <= x < $n and 0 <= y < $n)")
-        val x = readAnInt { x -> x in 0 until n}
-        val y = readAnInt { y -> y in 0 until n}
+        val x = readAnInt { x -> x in 0 until n }
+        val y = readAnInt { y -> y in 0 until n }
         return Position(x, y)
     }
 
