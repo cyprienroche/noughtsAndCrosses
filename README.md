@@ -1,3 +1,4 @@
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-yellow.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 The Board interface is here for two reasons:
 * First, the original problem was just to return the winner player.
@@ -12,3 +13,6 @@ Adding an enum to the Player enum should be possible and the game should update 
 
 Position (0, 0), the origin, is taken to be the top-left corner of the screen.
 If in doubt, create a SquareBoard explicitly and use the toStringWithCoordinates function. 
+
+### License
+[GPL v3](https://www.gnu.org/licenses/gpl-3.0)
